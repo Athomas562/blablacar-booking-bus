@@ -104,7 +104,7 @@ async function PostTrips(url) {
 	console.log(data);
 	
 		tripsList.innerHTML += `<div class="trips-card">
-						<img class="trips-card-img" src="${arrival2}" alt="lille" />
+						<img class="trips-card-img" src="${}" alt="lille" />
 						<div class="trips-card-content">
 							<div class="trips-card-route">
 								<div class="trips-card-routing">
@@ -159,6 +159,7 @@ async function PostTrips(url) {
 	
 }
 
+
 searchForm.addEventListener("submit", async (e) => {
 	e.preventDefault();
 	Page = 1;
@@ -177,9 +178,11 @@ btnblock.addEventListener("click", async () => {
 	tripsformgrid.showModal();
 });
 
-tripsForm.addEventListener("submit", async () => {
-	PostTrips(url);
-	
+tripsForm.addEventListener("submit", async (e) => {
+	e.preventDefault();
+
+	await PostTrips(url);
+
 	tripsList.innerHTML = "";
 	textGrey.style.display = "none";
 	moretrips.style.display = "flex";
